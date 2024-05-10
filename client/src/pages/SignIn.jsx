@@ -6,7 +6,6 @@ import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSli
 export default function SignIn() {
   const [formData, setFormData] = useState({});
   const { loading, error} = useSelector((state) => state.user);
-  const [confirmedPassword, setConfirmedPassword] = useState("");
   const navigate = useNavigate ();
   const dispatch = useDispatch();
 
@@ -16,14 +15,6 @@ export default function SignIn() {
         ...formData,
         [e.target.id]:e. target.value
       });
-
-      if(e.target.id === "password") {
-        setConfirmedPassword("");
-      }
-  };
-
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmedPassword(e.target.value);
   };
 
   const handleSubmit = async (e) => {
@@ -51,8 +42,6 @@ export default function SignIn() {
     }
 
   };
-
-  const passwordsMatch = formData.password === confirmedPassword;
   
   return (
     <div className='p-3 max-w-lg mx-auto'>
@@ -70,24 +59,13 @@ export default function SignIn() {
 
         <input 
           type="password"
-          placeholder='Enter Password'
+          placeholder='Password'
           className='border p-3 rounded-lg' 
-          id = 'password'onChange={handleChange} />
+          id = 'password' 
+          onChange={handleChange} />
 
-        <input 
-          type="password" 
-          placeholder='Confirm Password' 
-          className='border p-3 rounded-lg'
-          id = 'confirmed-password' 
-          onChange={handleConfirmPasswordChange}/>
-
-        {
-          !passwordsMatch && confirmedPassword.length > 0 && (
-            <p className="text-red-500">Passwords are not matching..Try again!</p>
-          )
-        }
-
-        <button disabled={loading || !passwordsMatch} className='bg-slate-800 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-95 ${
+        <button 
+        disabled={loading} className='bg-slate-800 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-95 ${
           !passwordsMatch ? "disabled:opacity-80 cursor-not-allowed" : ""
         }'
         >
