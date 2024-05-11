@@ -65,9 +65,9 @@ export default function SignIn() {
           onChange={handleChange} />
 
         <button 
-        disabled={loading} className='bg-slate-800 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-95 ${
-          !passwordsMatch ? "disabled:opacity-80 cursor-not-allowed" : ""
-        }'
+        disabled={loading} 
+        className='bg-slate-800 text-white p-3 rounded-lg uppercase 
+        hover:opacity-95 disabled-80'
         >
           {loading ?  'Loading...' : 'Sign In'}
         </button>
