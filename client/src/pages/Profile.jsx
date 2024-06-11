@@ -13,6 +13,7 @@ import {updateUserStart,
         } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 
+
 export default function Profile() {
   const fileRef = useRef (null);
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -115,7 +116,9 @@ export default function Profile() {
 
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
+      <h1 className='text-3xl font-semibold text-center my-7'>
+        Profile
+      </h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
 
         <input 
@@ -135,11 +138,15 @@ export default function Profile() {
 
         <p className="text-sm self-center">
           {fileUploadError ? (
-            <span className="text-red-700">Error Image Upload (Image must be less than 2MB)</span>
+            <span className="text-red-700">
+              Error Image Upload (Image must be less than 2MB)
+            </span>
           ) : filePerc > 0 && filePerc < 100 ? (
             <span className="text-slate-700">{`Uploading ${filePerc}%`}</span>
           ) : filePerc === 100 ? (
-            <span className="text-green-700">Image Successfully Uploaded</span>
+            <span className="text-green-700">
+              Image Successfully Uploaded
+            </span>
           ) : (
             ""
           )}
