@@ -27,7 +27,7 @@ export default function OAuth() {
             const data = await res.json()
             if (data.success !== false){
               dispatch(signInSuccess(data));
-              navigate('/');
+              navigate('/Home');
             } else {
               console.log('Sign in Failed:', data.message);
             }

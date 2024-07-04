@@ -1,9 +1,13 @@
 import { FaSearch } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 export default function Header() {
     const { currentUser } = useSelector((state) => state.user);
+    const location = useLocation();
+    const showHeader = location.pathname !== '/'; // Exclude header from the Welcome page
+  
+    if (!showHeader) return null;
 
     return (
         <header className='bg-slate-200 shadow-md'>
@@ -30,7 +34,7 @@ export default function Header() {
 
                 <ul className='flex gap-4'>
                     <li className='hidden sm:inline text-slate-700 hover:underline'>
-                        <Link to='/'>Home</Link>
+                        <Link to='/Home'>Home</Link>
                     </li>
                     <li className='hidden sm:inline text-slate-700 hover:underline'>
                         <Link to='/about'>About</Link>
