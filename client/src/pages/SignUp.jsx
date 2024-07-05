@@ -57,47 +57,49 @@ export default function SignUp() {
   const passwordsMatch = formData.password === confirmedPassword;
   
   return (
-    <div className='p-3 max-w-lg mx-auto'>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="p-10 bg-slate-200 shadow-md rounded-3xl w-full max-w-md">
 
-      <h1 className='text-3xl text-center font-semibold my-7'>Sign Up</h1>
+        <h1 className='text-3xl text-center font-semibold my-7'>Sign Up</h1>
 
-      <form  onSubmit = {handleSubmit} className='flex flex-col gap-4'>
-        <input type="text" placeholder='Username' 
-        className='border p-3 rounded-lg' id = 'username'onChange={handleChange}/> 
+        <form  onSubmit = {handleSubmit} className='flex flex-col gap-4'>
+          <input type="text" placeholder='Username' 
+          className='border p-3 rounded-lg' id = 'username'onChange={handleChange}/> 
 
-        <input type="email" placeholder='E-mail' 
-        className='border p-3 rounded-lg' id = 'email' onChange={handleChange}/>
+          <input type="email" placeholder='E-mail' 
+          className='border p-3 rounded-lg' id = 'email' onChange={handleChange}/>
 
-        <input type="password" placeholder='Enter Password'
-         className='border p-3 rounded-lg' id = 'password'onChange={handleChange} />
+          <input type="password" placeholder='Enter Password'
+          className='border p-3 rounded-lg' id = 'password'onChange={handleChange} />
 
-        <input type="password" placeholder='Confirm Password' 
-        className='border p-3 rounded-lg' id = 'confirmed-password' onChange={handleConfirmPasswordChange}/>
-        {
-          !passwordsMatch && confirmedPassword.length > 0 && (
-            <p className="text-red-500">Passwords are not matching..Try again!</p>
-          )
-        }
-        <button disabled={loading || !passwordsMatch} className='bg-slate-800 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-95 ${
-          !passwordsMatch ? "disabled:opacity-80 cursor-not-allowed" : ""
-        }'
-        >
-          {loading ?  'Loading...' : 'Sign Up'}
-        </button>
+          <input type="password" placeholder='Confirm Password' 
+          className='border p-3 rounded-lg' id = 'confirmed-password' onChange={handleConfirmPasswordChange}/>
+          {
+            !passwordsMatch && confirmedPassword.length > 0 && (
+              <p className="text-red-500">Passwords are not matching..Try again!</p>
+            )
+          }
+          <button disabled={loading || !passwordsMatch} className='bg-slate-800 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-95 ${
+            !passwordsMatch ? "disabled:opacity-80 cursor-not-allowed" : ""
+          }'
+          >
+            {loading ?  'Loading...' : 'Sign Up'}
+          </button>
 
-        <OAuth/>
-      
-      </form>
+          <OAuth/>
+        
+        </form>
 
-      <div className="flex gap-2 mt-5">
-        <p>Have an account?</p>
-        <Link to={"/sign-in"}>
-          <span className="text-blue-700">
-            Sign in
-          </span>
-        </Link>
+        <div className="flex gap-2 mt-5">
+          <p>Have an account?</p>
+          <Link to={"/sign-in"}>
+            <span className="text-blue-700">
+              Sign in
+            </span>
+          </Link>
+        </div>
+        {error && <p className="text-red-500 mt-5">{error}</p>}
       </div>
-      {error && <p className="text-red-500 mt-5">{error}</p>}
     </div>
-  )
+  );
 }

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 export default function Header() {
     const { currentUser } = useSelector((state) => state.user);
     const location = useLocation();
-    const showHeader = location.pathname !== '/'&& location.pathname !== '/admin-sign-in'; // Exclude header from the Welcome page
+    const showHeader = location.pathname !== '/'&& location.pathname !== '/admin-sign-in' && location.pathname !== '/sign-in' && location.pathname !== '/sign-up'; // Exclude header from the Welcome page
     
   
     if (!showHeader) return null;
