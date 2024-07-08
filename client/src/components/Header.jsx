@@ -11,14 +11,14 @@ export default function Header() {
     if (!showHeader) return null;
 
     return (
-        <header className='bg-slate-200 shadow-md'>
+        <header className='bg-saffron shadow-lg'>
             <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
                 <Link to='/'>
                     <h1 className='font-bold text-sm sm:text-xl flex flex-col items-center'>
-                        <span className='text-slate-500'>
+                        <span className='text-slate-600'>
                             Stay&Dine
                         </span>
-                        <span className='text-slate-700'>
+                        <span className='text-slate-800'>
                             Hub
                         </span>
                     </h1>
@@ -34,10 +34,10 @@ export default function Header() {
                 </form>
 
                 <ul className='flex gap-4'>
-                    <li className='hidden sm:inline text-slate-700 hover:underline'>
+                    <li className='hidden sm:inline text-black  hover:underline'>
                         <Link to='/Home'>Home</Link>
                     </li>
-                    <li className='hidden sm:inline text-slate-700 hover:underline'>
+                    <li className='hidden sm:inline text-black hover:underline'>
                         <Link to='/about'>About</Link>
                     </li>
                     <li>
@@ -49,7 +49,7 @@ export default function Header() {
                                     alt='profile'
                                 />
                             ) : (
-                                <span className='text-slate-700 hover:underline'>
+                                <span className='text-black hover:underline'>
                                     Sign in
                                 </span>
                             )}

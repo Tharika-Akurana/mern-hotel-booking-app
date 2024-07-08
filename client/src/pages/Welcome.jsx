@@ -17,7 +17,7 @@ export default function Welcome() {
             style={{backgroundImage: "url('https://cdn.pixabay.com/photo/2016/11/17/09/28/hotel-1831072_1280.jpg')", filter: "blur(2px)"}}>
             </div>
             <div className="absolute onset-0 bg-black opacity-10"></div>
-            <div className="relative z-10 bg-slate-50 bg-opacity-60 max-w-10xl mx-auto p-20 rounded-2xl shadow-lg text-center">
+            <div className="relative z-10 bg-white bg-opacity-75 max-w-10xl mx-auto p-20 rounded-2xl shadow-lg text-center">
                 <h1 className="text-4xl font-bold text-center mb-2">
                     Stay&Dine Hub
                 </h1>
@@ -34,11 +34,11 @@ export default function Welcome() {
                     Book Your Perfect Stay or Dining Experience Now
                 </p>
                 <button onClick={()=>window.location.href = '/home'}
-                className="bg-blue-500 text-white px-6 py-2.5 rounded-lg mb-3 hover:bg-blue-600">
+                className="bg-darkGold text-whiteSmoke px-8 py-2.5 rounded-lg mb-3 hover:bg-goldLeaf">
                         Explore Now
                 </button>
                 <br />
-                <button onClick={() => window.location.href = '/admin-sign-in'} className="bg-gray-500 text-white px-6 py-2.5 rounded-lg hover:bg-gray-600">
+                <button onClick={() => window.location.href = '/admin-sign-in'} className="bg-slate-600 text-white px-6 py-2.5 rounded-lg hover:bg-slate-700">
                     Sign In as Admin
                 </button>
             </div>

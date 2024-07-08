@@ -10,8 +10,11 @@ import {updateUserStart,
         deleteUserStart,
         deleteUserSuccess,
         signOutUserStart,
+        signOutUserFailure,
+        signOutUserSuccess
         } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 
 
 export default function Profile() {
@@ -23,6 +26,7 @@ export default function Profile() {
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect (()=>{
     if (file){
@@ -105,18 +109,19 @@ export default function Profile() {
       const res = await fetch('/api/auth/signout');
       const data = await res.json();
       if (data.success === false) {
-        dispatch(deleteUserFailure(data.message));
+        dispatch(signOutUserFailure(data.message));
         return;
       }
-      dispatch(deleteUserSuccess(data));
+      dispatch(signOutUserSuccess(data));
+      navigate('/home');
     } catch (error) {
-      dispatch(deleteUserFailure(data.message));
+      dispatch(signOutUserFailure(error.message));
     }
-  }
+  };
 
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <h1 className='text-3xl font-semibold text-center my-7'>
+      <h1 className='text-3xl font-semibold text-center my-10'>
         Profile
       </h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
@@ -133,7 +138,7 @@ export default function Profile() {
           onClick= {()=>fileRef.current.click ()}
           src= {formData.avatar || currentUser.avatar} 
           alt="profile"
-          className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2"
+          className="rounded-full h-24 w-24 object-cover border-2 shadow-xl cursor-pointer self-center mt-2"
         />
 
         <p className="text-sm self-center">
@@ -180,7 +185,7 @@ export default function Profile() {
 
         <button
           disabled={loading}
-          className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'
+          className='bg-darkGold text-white rounded-lg p-3 uppercase hover:opacity-85 disabled:opacity-80'
         >
           {loading ? 'Loading...' : 'Update'}
         </button>

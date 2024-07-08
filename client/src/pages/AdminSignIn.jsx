@@ -41,13 +41,13 @@ export default function AdminSignIn() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="p-10 bg-slate-200 shadow-md rounded-3xl w-full max-w-md">
-        <h1 className='text-3xl text-center font-semibold my-7'>Admin Sign In</h1>
-        <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
+    <div className="flex items-center justify-center min-h-screen bg-ivory">
+      <div className="p-16 bg-cream shadow-2xl rounded-3xl w-full h-auto max-w-md">
+        <h1 className='text-3xl text-center font-semibold my-12 '>Admin Sign In</h1>
+        <form onSubmit={handleSubmit} className='flex flex-col gap-6'>
           <input type="email" placeholder='E-mail' className='border p-3 rounded-lg' id='email' onChange={handleChange} />
           <input type="password" placeholder='Password' className='border p-3 rounded-lg' id='password' onChange={handleChange} />
-          <button disabled={loading} className='bg-slate-800 text-white p-3 rounded-lg uppercase hover:opacity-95'>
+          <button disabled={loading} className='bg-slate-600 text-white p-3 rounded-lg uppercase hover:opacity-90'>
             {loading ? 'Loading...' : 'Sign In'}
           </button>
         </form>
