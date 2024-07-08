@@ -7,7 +7,8 @@ import SignUp from "./pages/SignUp";
 import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute";
 import Welcome from "./pages/Welcome";
-import Admin_SignIn from "./pages/Admin_SignIn";
+import AdminSignIn from "./pages/AdminSignIn";
+import CreateListings from "./pages/CreateListings";
 
 export default function App() {
   return <BrowserRouter>
@@ -15,7 +16,7 @@ export default function App() {
   <Routes>
 
     <Route path="/" element={<Welcome/>} />
-    <Route path="/admin-sign-in" element={<Admin_SignIn/>} />
+    <Route path="/admin-sign-in" element={<AdminSignIn/>} />
     <Route path="/home" element={<Home/>} />
     <Route path="/sign-in" element={<SignIn/>} />
     <Route path="/sign-up" element={<SignUp/>} />
@@ -23,6 +24,7 @@ export default function App() {
     <Route element={<PrivateRoute />}>
       <Route path='/profile' element={<Profile />} />
     </Route>
+    <Route path='/create-listings' element={<CreateListings />} />
     
   </Routes>
   </BrowserRouter>
