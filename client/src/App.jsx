@@ -9,7 +9,6 @@ import PrivateRoute from "./components/PrivateRoute";
 import Welcome from "./pages/Welcome";
 import AdminSignIn from "./pages/AdminSignIn";
 import CreateListings from "./pages/CreateListings";
-import AdminSignUp from "./pages/AdminSignUp";
 
 export default function App() {
   return <BrowserRouter>
@@ -18,14 +17,15 @@ export default function App() {
 
     <Route path="/" element={<Welcome/>} />
     <Route path="/admin-sign-in" element={<AdminSignIn/>} />
-    <Route path="/admin-sign-up" element={<AdminSignUp/>} />
     <Route path="/home" element={<Home/>} />
     <Route path="/sign-in" element={<SignIn/>} />
     <Route path="/sign-up" element={<SignUp/>} />
     <Route path="/about" element={<About/>} />
-    <Route element={<PrivateRoute />}>
+    <Route path='/profile' element={<Profile />} />
+
+    {/* <Route element={<PrivateRoute />}>
       <Route path='/profile' element={<Profile />} />
-    </Route>
+    </Route> */}
     <Route path='/create-listings' element={<CreateListings />} />
     
   </Routes>

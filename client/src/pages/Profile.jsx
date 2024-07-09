@@ -97,6 +97,7 @@ export default function Profile() {
         return;
       }
       dispatch(deleteUserSuccess(data));
+      navigate ('/home');
     } catch (error) {
       dispatch(deleteUserFailure(error.message));
     }
