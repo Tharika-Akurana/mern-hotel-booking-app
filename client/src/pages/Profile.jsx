@@ -15,6 +15,7 @@ import {updateUserStart,
         } from '../redux/user/userSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 export default function Profile() {
@@ -190,6 +191,10 @@ export default function Profile() {
         >
           {loading ? 'Loading...' : 'Update'}
         </button>
+
+        <Link  className='bg-cinamon text-white p-3  rounded-lg text-center uppercase hover:opacity-85' to = "/home">
+        Book Now
+        </Link>
 
         </form>
         <div className="flex justify-between mt-5">
