@@ -45,9 +45,10 @@ const listingSchema = new mongoose.Schema({
     facilities: {
         type: String
     },
-    images: {
-        type: [String]
-    } 
+    imageUrls: {
+        type: Array,
+        required: true
+    }
 }, {timestamps: true}
 );
 
