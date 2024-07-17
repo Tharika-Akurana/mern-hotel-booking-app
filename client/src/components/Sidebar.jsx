@@ -4,7 +4,7 @@ import logo from '../assets/Images/Logo.png';
 
 const Sidebar = () => {
   return (
-    <div className='w-64 h-auto bg-DeepNavyBlue text-white flex flex-col justify-between'>
+    <div className='w-44 h-auto bg-DeepNavyBlue text-white flex flex-col justify-between'>
       <div className='mb-8'></div>
       <div className='p-4 text-center mb-4'>
         <Link to="/">
@@ -20,17 +20,17 @@ const Sidebar = () => {
         </Link>
       </div>
       <nav className='flex-grow items-center justify-center'>
-        <Link to="/create-listings" className='block py-3 px-4 hover:bg-gray-500'>
-          New Hotel Listing
+        <Link to="/create-listings" className='block py-3 px-4 hover:bg-gray-500 '>
+          Add Hotel
         </Link>
         <Link to="/edit-listings" className='block py-3 px-4 hover:bg-gray-500'>
-          Hotel Listing Editor
+          Edit Hotel
         </Link>
         <Link to="/listings" className='block py-3 px-4 hover:bg-gray-500'>
-          View Hotels
+           Hotels
         </Link>
         <Link to="/logout" className='block py-3 px-4 hover:bg-gray-500'>
-          Log Out
+          Logout
         </Link>
       </nav>
     </div>
