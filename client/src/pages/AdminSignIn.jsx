@@ -41,8 +41,8 @@ export default function AdminSignIn() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-ivory">
-      <div className="p-16 bg-cream shadow-2xl rounded-3xl w-full h-auto max-w-md">
+    <div className="flex items-center justify-center w-full min-h-screen bg-ivory border">
+      <div className="p-16 bg-cream shadow-2xl rounded-3xl w-full h-auto max-w-md border">
         <h1 className='text-3xl text-center font-semibold my-12 '>Admin Sign In</h1>
         <form onSubmit={handleSubmit} className='flex flex-col gap-6'>
           <input type="email" placeholder='E-mail' className='border p-3 rounded-lg' id='email' onChange={handleChange} />

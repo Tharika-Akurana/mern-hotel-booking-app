@@ -19,7 +19,9 @@ export default {
         saffron: '#F7C319',
         Sunglow: '#FACF43',
         cream: '#FDFBCF',
-        cinamon: '#d2691e'
+        cinamon: '#d2691e',
+        RichDarkBrown: '#4B3832',
+        DeepNavyBlue: '#2C3E50'
       },
     },
   },

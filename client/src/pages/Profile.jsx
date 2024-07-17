@@ -122,7 +122,7 @@ export default function Profile() {
   };
 
   return (
-    <div className="p-3 max-w-lg mx-auto">
+    <div className="p-3 max-w-lg w-full mx-auto">
       <h1 className='text-3xl font-semibold text-center my-10'>
         Profile
       </h1>

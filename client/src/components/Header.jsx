@@ -1,6 +1,7 @@
 import { FaSearch } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import logo from '../assets/Images/Logo.png';
 
 export default function Header() {
     const { currentUser } = useSelector((state) => state.user);
@@ -14,17 +15,20 @@ export default function Header() {
     if (!showHeader) return null;
 
     return (
-        <header className='bg-saffron shadow-lg'>
+        <header className='bg-DeepNavyBlue shadow-lg'>
             <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
                 <Link to='/'>
-                    <h1 className='font-bold text-sm sm:text-xl flex flex-col items-center'>
-                        <span className='text-slate-600'>
-                            Stay&Dine
-                        </span>
-                        <span className='text-slate-800'>
-                            Hub
-                        </span>
-                    </h1>
+                    <div className='flex items-center'>
+                    <img src={logo} alt="Logo" className='w-14 h-14 mr-4 rounded-full' />
+                        <h1 className='font-bold text-sm sm:text-xl flex flex-col items-center'>
+                            <span className='text-slate-300'>
+                                Stay&Dine
+                            </span>
+                            <span className='text-slate-100'>
+                                Hub
+                            </span>
+                        </h1>
+                    </div>
                 </Link>
 
                 <form className='bg-slate-100 p-3 rounded-lg flex items-center'>
@@ -37,10 +41,10 @@ export default function Header() {
                 </form>
 
                 <ul className='flex gap-4'>
-                    <li className='hidden sm:inline text-black  hover:underline'>
+                    <li className='hidden sm:inline text-white  hover:underline'>
                         <Link to='/Home'>Home</Link>
                     </li>
-                    <li className='hidden sm:inline text-black hover:underline'>
+                    <li className='hidden sm:inline text-white hover:underline'>
                         <Link to='/about'>About</Link>
                     </li>
                     <li>
@@ -54,7 +58,7 @@ export default function Header() {
                                 </Link>
                             ) : (
                                 <Link to='/sign-in'>
-                                <span className='text-black hover:underline' >
+                                <span className='text-white hover:underline' >
                                     Sign in
                                 </span>
                                 </Link>
