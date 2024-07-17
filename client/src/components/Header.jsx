@@ -5,7 +5,9 @@ import { useSelector } from 'react-redux';
 export default function Header() {
     const { currentUser } = useSelector((state) => state.user);
     const location = useLocation();
-    const showHeader = location.pathname !== '/'&& location.pathname !== '/admin-sign-in' && location.pathname !== '/sign-in' && location.pathname !== '/sign-up' && location.pathname !== '/create-listings';
+    const showHeader = location.pathname !== '/'&& location.pathname !== '/admin-sign-in' && 
+    location.pathname !== '/sign-in' && location.pathname !== '/sign-up' && location.pathname !== '/create-listings' 
+    && location.pathname !== '/listings' && location.pathname !== '/edit-listings' && location.pathname !== '/logout';
     const navigate = useNavigate;
     
   
