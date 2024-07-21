@@ -126,7 +126,7 @@ const CreateListing = () => {
 
     return (
         <div className='container mx-auto p-6'>
-            <h1 className='text-3xl font-semibold text-black  text-center mb-6'> Adding New Hotel </h1>
+            <h1 className='text-3xl font-thin underline text-black font-serif text-center mb-10'> Adding Hotel </h1>
             <form onSubmit={handleSubmit} className='space-y-6 text-base font-semibold'>
                 {/* Basic Hotel Information */}
                 <div>

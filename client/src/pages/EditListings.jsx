@@ -43,7 +43,7 @@ const EditListings = () => {
 
   return (
     <div className='container mx-auto p-6'>
-        <h1 className='text-3xl font-semibold text-black text-center mb-6'>Edit Hotels</h1>
+        <h1 className='text-3xl font-thin underline text-black font-serif  text-center mb-10'>Edit Hotels</h1>
         {loading && <p>Loading...</p>}
         {error && <p className='text-red-700'>{error}</p>}
         <div className='grid gap-4'>
