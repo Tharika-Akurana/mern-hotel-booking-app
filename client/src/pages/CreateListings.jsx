@@ -95,57 +95,14 @@ const CreateListing = () => {
           imageUrls: formData.imageUrls.filter((_, i) => i !== index),
         });
       };
-    // const handleImageUpload = (e) => {
-    //     const files = Array.from(e.target.file);
-    //     const imageUrls = files.map(file => URL.createObjectURL(file));
-    //     setFormData({
-    //         ...formData,
-    //         images: [...formData.images, ...imageUrls]
-    //     });
-    // };
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-
-    //     const submissionData = new FormData();
-    //     for (const key in formData) {
-    //         if (key === 'imageUrls') {
-    //             formData.imageUrls.forEach((image) => {
-    //                 submissionData.append('imageUrls',image);
-    //             });
-    //         } else {
-    //             submissionData.append(key, formData[key]);
-    //         }
-    //     }
-
-    //     try {
-    //         const response = await fetch('/api/listing/create',{
-    //             method: 'POST',
-    //             body: submissionData,
-    //         });
-
-    //         const result = await response.json();
-    //         console.log('Hotel Data:', result);
-
-    //         if(response.ok){
-    //             alert("Hotel added successfully");
-    //         } else {
-    //             alert("Error adding hotel: " + result.message);
-    //         }
-
-    //     } catch (error) {
-    //         console.error('Error:', error);
-    //         alert('An error occurred while adding the hotel');
-    //     }
-    // };
-
-    const handleSubmit = async (e) => {
+      
+      const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            if(formData.imageUrls.length < 1) return setError ('You must upload at least one image');
+            if (formData.imageUrls.length < 1) return setError('You must upload at least one image');
             setLoading(true);
             setError(false);
-            const res = await fetch ('/api/listing/create', {
+            const res = await fetch('/api/listing/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -156,13 +113,16 @@ const CreateListing = () => {
             setLoading(false);
             if (data.success === false){
                 setError(data.message);
+            } else {
+                setTimeout(()=>{
+                    navigate('/edit-listings');
+                }, 1000);
             }
-            navigate('/listing');
         } catch (error) {
             setError(error.message);
             setLoading(false);
         }
-    }
+      };
 
     return (
         <div className='container mx-auto p-6'>
@@ -353,27 +313,6 @@ const CreateListing = () => {
                     />
                 </div>
 
-                {/* Image Uploading */}
-                {/* <div>
-                    <label className='block mb-2 font-sans text-justify'> Upload Images </label>
-                    <input
-                        type = "file"
-                        accept = "image/"
-                        onChange = {handleImageUpload}
-                        multiple
-                        className='mb-2'
-                    />
-                    <div className='flex space-x-2'>
-                        {formData.images.map((imageUrl, index) => (
-                            <img
-                                key={index}
-                                src={imageUrl}
-                                alt={`Hotel Image ${index + 1}`}
-                                className='w-2- h-2- object-cover border rounded'
-                            />
-                        ))}
-                    </div>
-                </div> */}
                 <div className='flex flex-col gap-2'> 
                     <p className='font-semibold mb-2'>
                         Images:

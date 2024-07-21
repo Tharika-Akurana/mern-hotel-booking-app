@@ -1,8 +1,9 @@
 import express from 'express';
-import { createListing } from '../controllers/listing.controller.js';
+import { createListing, getAllListings } from '../controllers/listing.controller.js';
 
 const router = express.Router();
 
 router.post('/create', createListing);
+router.get('/all',getAllListings);
 
 export default router;
