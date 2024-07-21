@@ -23,7 +23,21 @@ const EditListings = () => {
   }, []);
 
   const handleDelete = async (id) => {
-
+    if (window.confirm("Are you sure want to delete this listing?")) {
+      try {
+        const res = await fetch(`/api/listing/delete/${id}`,{
+          method: 'DELETE',
+        });
+        const data = await res.json();
+        if (res.ok) {
+          window.location.reload();
+        } else {
+          setError(data.message);
+        }
+      } catch (error) {
+        setError(error.message);
+      }
+    }
   };
 
 

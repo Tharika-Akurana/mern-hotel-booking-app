@@ -17,9 +17,10 @@ export const getAllListings = async (req, res) => {
         const listings = await Listing.find();
         res.status(200).json(listings);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        next(error);
     }
 };
+
 export const updateListing = async (req, res, next) => {
     try {
         const { id } = req.params;
@@ -38,6 +39,19 @@ export const getListingById = async (req, res) => {
         }
         res.status(200).json(listing);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        next(error);
     }
 };
+
+export const deleteListing = async(req, res) => {
+    try {
+       const { id } = req.params;
+       const deleteListing = await Listing.findByIdAndDelete(id);
+        if(!deleteListing) {
+            return res.status(404).json({message: 'Listing not found'});
+        }
+        res.status(200).json({message: 'Listing deleted successfully'});
+    } catch (error) {
+       next(error)
+    }
+}
