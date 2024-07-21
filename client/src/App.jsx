@@ -13,6 +13,7 @@ import EditListings from "./pages/EditListings";
 import Sidebar from "./components/Sidebar";
 import Listings from "./pages/Listings";
 import Logout from "./pages/Logout";
+import EditListingDetails from "./pages/EditListingDetails";
 
 
 export default function App() {
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/edit-listings" element={<> <Sidebar /> <EditListings/> </>} /> 
           <Route path="/listings" element={<> <Sidebar /> <Listings/> </>} /> 
           <Route path="/logout" element={<> <Sidebar/> <Logout/> </>} /> 
+          <Route path="/edit-listing/:id" element={<> <Sidebar /> <EditListingDetails /> </>} />
 
         </Routes>
       </div>
