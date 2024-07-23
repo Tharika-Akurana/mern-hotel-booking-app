@@ -14,6 +14,14 @@ import Sidebar from "./components/Sidebar";
 import Listings from "./pages/Listings";
 import Logout from "./pages/Logout";
 import EditListingDetails from "./pages/EditListingDetails";
+import Resorts from "./pages/Resorts";
+import GuestHouses from "./pages/GuestHouses";
+import BudgetHotels from "./pages/BudgetHotels";
+import BoutiqueHotels from "./pages/BoutiqueHotels";
+import LuxuryHotels from "./pages/LuxuryHotels";
+import BusinessHotels from "./pages/BusinessHotels";
+import TransientHotels from "./pages/TransientHotels";
+import Restaurants from "./pages/Restaurants";
 
 
 export default function App() {
@@ -29,7 +37,14 @@ export default function App() {
           <Route path="/sign-in" element={<SignIn/>} />
           <Route path="/sign-up" element={<SignUp/>} />
           <Route path="/about" element={<About/>} />
-          {/* <Route path='/profile' element={<Profile />} /> */}
+          <Route path="/restaurant" element={<Restaurants />} />
+          <Route path="/resorts" element={<Resorts/>} />
+          <Route path="/guest-houses" element={<GuestHouses/>} />
+          <Route path="/budget-hotels" element={<BudgetHotels/>} />
+          <Route path="/boutique-hotels" element={<BoutiqueHotels/>} />
+          <Route path="/luxury-hotels" element={<LuxuryHotels/>} />
+          <Route path="/business-hotels" element={<BusinessHotels/>} />
+          <Route path="/transient-hotels" element={<TransientHotels/>} />
 
           <Route element={<PrivateRoute />}>
             <Route path='/profile' element={<Profile />} />

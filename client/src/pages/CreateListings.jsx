@@ -199,7 +199,7 @@ const CreateListing = () => {
                 <div>
                     <label className='block mb-3 font-sans text-justify '> Types of Hotels</label>
                     <div className='flex flex-wrap gap-x-20 gap-y-2 '>
-                        {["resturent", "resort", "guestHouse", "budget", "boutique", "luxury", "business", "transient"].map((type) => (
+                        {["restaurant", "resort", "guestHouse", "budget", "boutique", "luxury", "business", "transient"].map((type) => (
                             <div key={type}>
                                 <input
                                     type="radio"
@@ -217,7 +217,7 @@ const CreateListing = () => {
                 </div>
 
                 {/* Pricing */}
-                {formData.hotelType === "resturent" || formData.hotelType === "transient" ? (
+                {formData.hotelType === "restaurant" || formData.hotelType === "transient" ? (
                     <div>
                         <label className='block mb-2 font-sans text-justify'> Price per Hour (LKR) </label>
                         <input
