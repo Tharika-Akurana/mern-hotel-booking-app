@@ -33,10 +33,10 @@ const Home = () => {
   const categories = [
     { name: 'Restaurants', link: '/restaurant', description: 'Explore the best dining experiences', img: restaurant },
     { name: 'Resorts', link: '/resorts', description: 'Relax in luxury resorts', img: resort },
-    { name: 'Guest Houses', link: '/guest-houses', description: 'Enjoy a home-like stay with personalized service and cozy ambiance', img: guestHouse },
     { name: 'Budget Hotels', link: '/budget-hotels', description: 'Affordable stays with essential amenities and comfort', img: budget },
     { name: 'Boutique Hotels', link: '/boutique-hotels', description: 'Unique accommodations with personalized touches and stylish design', img: boutique },
     { name: 'Luxury Hotels', link: '/luxury-hotels', description: 'Experience top-notch amenities and exceptional service in a lavish setting', img: luxury },
+    { name: 'Guest Houses', link: '/guest-houses', description: 'Enjoy a home-like stay with personalized service and cozy ambiance', img: guestHouse },
     { name: 'Business Hotels', link: '/business-hotels', description: 'Convenient and well-equipped for business travelers, with meeting rooms and workspaces', img: business },
     { name: 'Transient Hotels', link: '/transient-hotels', description: 'Ideal for short stays, offering convenience and comfort for travelers on the go', img: transient },
   ];

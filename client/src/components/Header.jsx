@@ -19,12 +19,12 @@ export default function Header() {
             <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
                 <Link to='/'>
                     <div className='flex items-center'>
-                    <img src={logo} alt="Logo" className='w-14 h-14 mr-4 rounded-full' />
-                        <h1 className='font-bold text-sm sm:text-xl flex flex-col items-center'>
-                            <span className='text-slate-300'>
+                        <img src={logo} alt="Logo" className='w-14 h-14 mr-4 rounded-full' />
+                        <h1 className='font-bold text-sm sm:text-xl flex flex-col items-center text-slate-300 hover:text-darkGold'>
+                            <span className='text-center'>
                                 Stay&Dine
                             </span>
-                            <span className='text-slate-100'>
+                            <span className='text-center'>
                                 Hub
                             </span>
                         </h1>
@@ -41,10 +41,10 @@ export default function Header() {
                 </form>
 
                 <ul className='flex gap-4'>
-                    <li className='hidden sm:inline text-white  hover:underline'>
+                    <li className='hidden sm:inline text-white hover:text-goldenYellow  hover:underline'>
                         <Link to='/Home'>Home</Link>
                     </li>
-                    <li className='hidden sm:inline text-white hover:underline'>
+                    <li className='hidden sm:inline text-white hover:text-goldenYellow hover:underline'>
                         <Link to='/about'>About</Link>
                     </li>
                     <li>
@@ -58,7 +58,7 @@ export default function Header() {
                                 </Link>
                             ) : (
                                 <Link to='/sign-in'>
-                                <span className='text-white hover:underline' >
+                                <span className='text-white hover:text-goldenYellow hover:underline' >
                                     Sign in
                                 </span>
                                 </Link>
