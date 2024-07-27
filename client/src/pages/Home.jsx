@@ -35,56 +35,56 @@ const Home = () => {
       name: 'Restaurants',
       link: '/restaurants',
       sliderDescription: 'Explore the best dining experiences',
-      detailDescription: 'Restaurants offer a variety of cuisines to delight your taste buds. Enjoy gourmet meals prepared by top chefs in a cozy and elegant ambiance. Perfect for a family dinner, romantic date, or business lunch.',
+      detailDescription: 'Restaurants offer a variety of food styles to delight your taste buds. They provide delicious meals prepared by top chefs in a cozy and elegant ambiance, making them perfect for family dinners, romantic dates, or business lunches. Restaurants focus exclusively on dining experiences, offering specialized menus and culinary delights. Users visit restaurants for high-quality food, exceptional service, and a memorable dining experience.',
       img: restaurant
     },
     {
       name: 'Resorts',
       link: '/resorts',
       sliderDescription: 'Relax in luxury resorts',
-      detailDescription: 'Resorts provide a perfect getaway with luxurious amenities and stunning views. Whether you want to lounge by the pool, enjoy spa treatments, or engage in outdoor activities, resorts offer everything you need for a relaxing and rejuvenating vacation.',
+      detailDescription: 'Resorts provide a perfect getaway with luxurious amenities and stunning views. Guests can lounge by the pool, enjoy spa treatments, or engage in outdoor activities, making resorts ideal for a relaxing and rejuvenating vacation. Resorts stand out from other hotel types by offering extensive recreational facilities and a focus on leisure and relaxation. Users choose resorts for their all-inclusive packages, beautiful locations, and the opportunity to unwind and indulge.',
       img: resort
     },
     { 
       name: 'Budget Hotels', 
       link: '/budget-hotels', 
       sliderDescription: 'Affordable stays with essential amenities and comfort', 
-      detailDescription: 'Budget Hotels are ideal for travelers looking for affordable accommodations without compromising on comfort. These hotels offer essential amenities, clean rooms, and convenient locations, making them a great choice for budget-conscious travelers.', 
+      detailDescription: 'Budget Hotels are ideal for travelers looking for affordable accommodations without compromising on comfort. These hotels offer essential amenities, clean rooms, and convenient locations, making them a great choice for budget-conscious travelers. Specially, budget hotels prioritize affordability and practicality. You can budget hotels to save money while still enjoying a comfortable stay, especially when traveling for work or on a tight budget.', 
       img: budget 
     },
     {
       name: 'Boutique Hotels',
       link: '/boutique-hotels',
       sliderDescription: 'Unique accommodations with personalized touches and stylish design',
-      detailDescription: 'Boutique Hotels are known for their unique style and personalized service. Each hotel has its own character, offering a cozy and intimate atmosphere. Perfect for those seeking a memorable and distinct stay.',
+      detailDescription: 'Boutique Hotels are known for their unique style and personalized service. Each hotel has its own character, offering a cozy and intimate atmosphere. Boutique hotels differ from larger chains by focusing on individuality, design, and guest experience. People prefer boutique hotels for a memorable and distinct stay, with personalized touches and stylish decor that make them feel special and catered to.',
       img: boutique
     },
     {
       name: 'Luxury Hotels',
       link: '/luxury-hotels',
       sliderDescription: 'Experience top-notch amenities and exceptional service in a lavish setting',
-      detailDescription: 'Luxury Hotels offer the finest in accommodations and service. Enjoy spacious rooms, gourmet dining, and premium amenities. These hotels provide an opulent experience, perfect for those looking to indulge and pamper themselves.',
+      detailDescription: 'Luxury hotels provide the finest in accommodations and service, with spacious rooms, luxurious dining, and premium amenities. These hotels provide an opulent experience, perfect for those looking to indulge and enjoy themselves. Luxury hotels differ from other types by providing top-notch service, exclusive facilities, and a high level of comfort. Users choose luxury hotels for a lavish experience, exceptional service, and to celebrate special occasions in style.',
       img: luxury
     },
     {
       name: 'Guest Houses',
       link: '/guest-houses',
       sliderDescription: 'Enjoy a home-like stay with personalized service and cozy ambiance',
-      detailDescription: 'Guest Houses provide a home-like atmosphere with personalized service. Ideal for travelers seeking a cozy and welcoming environment, these accommodations offer comfort and convenience with a personal touch.',
+      detailDescription: 'Guest Houses provide a home-like atmosphere with personalized service, ideal for travelers seeking a cozy and welcoming environment. These accommodations offer comfort and convenience with a personal touch, making guests feel at home. Guest houses differ from larger hotels by offering a more intimate and friendly setting. Users book guest houses for their warm hospitality, personalized attention, and the chance to experience local culture in a home-like setting.',
       img: guestHouse
     },
     {
       name: 'Business Hotels',
       link: '/business-hotels',
       sliderDescription: 'Ideal for short stays, offering convenience and comfort for travelers on the go',
-      detailDescription: 'Transient Hotels are perfect for short stays, providing convenience and comfort for travelers. Located near airports and transit hubs, these hotels offer easy access and quick accommodations for those on the move.',
+      detailDescription: 'Business Hotels cater to the needs of business travelers, offering convenient locations, meeting facilities, and essential amenities for work-related stays. These hotels are designed to provide comfort and efficiency for professionals on the go. Business hotels stand out from other types by focusing on services and facilities that support business activities. Users choose business hotels for their strategic locations, reliable services, and the ability to conduct meetings and work efficiently during their stay.',
       img: business
     },
     {
       name: 'Transient Hotels', 
       link: '/transient-hotels', 
       sliderDescription: 'Ideal for short stays, offering convenience and comfort for travelers on the go', 
-      detailDescription: 'Transient Hotels are perfect for short stays, providing convenience and comfort for travelers. Located near airports and transit hubs, these hotels offer easy access and quick accommodations for those on the move.', 
+      detailDescription: 'Transient Hotels are perfect for short stays, providing convenience and comfort for travelers. Located near airports and transit hubs, these hotels offer easy access and quick accommodations for those on the move. Transient hotels differ from other types by focusing on short-term stays and proximity to transportation hubs. Users book transient hotels for their convenience, quick check-in and check-out processes, and the ability to rest and refresh during travel layovers or short trips.', 
       img: transient 
     },
   ];
@@ -154,7 +154,7 @@ const Home = () => {
             </div>
             <div className="flex justify-end mt-6">
               <a href={category.link}>
-                <button className="mt-6 px-4 py-2 bg-darkGold text-white rounded-md hover:bg-goldLeaf">Show Items</button>
+                <button className="mt-6 px-4 py-2 bg-darkGold text-white rounded-md hover:bg-goldLeaf">Explore...</button>
               </a>
             </div>
           </div>
