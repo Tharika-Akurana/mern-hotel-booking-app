@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/swiper-bundle.css';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import restaurant from '../assets/Images/Restaurant.jpg';
 import resort from '../assets/Images/Resort.jpg';
 import guestHouse from '../assets/Images/Guest_House.jpg';
@@ -121,7 +121,10 @@ const Home = () => {
         slidesPerView={1}
         pagination={{ clickable:true }}
         navigation
-        modules={[Navigation, Pagination]}
+        autoplay = {{ delay: 5000, disableOnInteraction: false }}
+        loop = {true}
+        speed = {1000}
+        modules={[Navigation, Pagination, Autoplay]}
         onSlideChange={handleSliderChange}
       >
         {categories.map((category, index) => (

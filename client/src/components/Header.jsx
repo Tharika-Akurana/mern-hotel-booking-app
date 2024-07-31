@@ -8,7 +8,10 @@ export default function Header() {
     const location = useLocation();
     const showHeader = location.pathname !== '/'&& location.pathname !== '/admin-sign-in' && 
     location.pathname !== '/sign-in' && location.pathname !== '/sign-up' && location.pathname !== '/create-listings' 
-    && location.pathname !== '/listings' && location.pathname !== '/edit-listings' && location.pathname !== '/logout' &&  !location.pathname.startsWith('/edit-listing/') ;
+    && location.pathname !== '/listings' && location.pathname !== '/edit-listings' && location.pathname !== '/logout' 
+    && location.pathname !== '/boutique-hotels' && location.pathname !== '/budget-hotels' && location.pathname !== '/business-hotels' 
+    && location.pathname !== '/guest-houses' && location.pathname !== '/luxury-hotels' && location.pathname !== '/resorts'
+    && location.pathname !== '/restaurants' && location.pathname !== '/transient-hotels' &&  !location.pathname.startsWith('/edit-listing/') ;
     const navigate = useNavigate;
     
   
