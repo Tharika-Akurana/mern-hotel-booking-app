@@ -54,4 +54,25 @@ export const deleteListing = async(req, res) => {
     } catch (error) {
        next(error)
     }
-}
+};
+
+export const saveAllListings = async (req, res, next) => {
+    try {
+        const listings = req.body;
+        if (!Array.isArray(listings)) {
+            return res.status(400).json({ message:"Invalid data fromat. Expected an array" });   
+        }
+
+        const savedListings = [];
+        for (const listing of listings) {
+            const savedListing = await Listing.findByIdAndUpdate(listing._id, listing, { new: true, upsert: true });
+            savedListings.push(savedListing);
+        }
+
+        res.status(200).json({ message: 'All listings saved successfully', savedListings});
+
+    } catch (error) {
+        next(error);
+    }
+};
+

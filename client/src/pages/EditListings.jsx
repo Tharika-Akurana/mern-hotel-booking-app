@@ -1,4 +1,4 @@
-import react, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Link } from 'react-router-dom';
 
 const EditListings = () => {
@@ -40,6 +40,25 @@ const EditListings = () => {
     }
   };
 
+  const handleSave = async () => {
+    try {
+      const res = await fetch('/api/listing/save-all',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(listings),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        alert('All listings saved successfully!');
+      } else {
+        setError(data.message);
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   return (
     <div className='container mx-auto p-6'>
@@ -60,7 +79,12 @@ const EditListings = () => {
                   Delete
                 </button>
             </div>
-                ))}
+          ))}
+        </div>
+        <div className='flex justify-center mt-10'>
+          <button onClick={handleSave} className='px-6 py-3 bg-saffron text-white rounded-lg uppercase hover:opacity-85'>
+            Save
+          </button>
         </div>
     </div>
   );

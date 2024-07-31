@@ -24,7 +24,7 @@ const Home = () => {
       if (index === activeIndex) {
         const slideItems = item.querySelectorAll('.slide-item');
         slideItems.forEach((slideItem, slideIndex) => {
-          slideItem.style.animation = `slideInFromBottom 1s ease forwards ${slideIndex}s`;
+          slideItem.style.animation = `slideInFromBottom 0.75s ease forwards ${slideIndex}s`;
         });
       }
     });
