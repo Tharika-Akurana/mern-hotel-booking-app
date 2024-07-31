@@ -14,7 +14,7 @@ const EditListingDetails = () => {
         email: '',
         description: '',
         hotelType: '',
-        pricePerHour: '',
+        pricePerPerson: '',
         pricePerNight: '',
         priceDayFunction: '',
         priceNightFunction: '',
@@ -214,11 +214,11 @@ const EditListingDetails = () => {
                         />
                     </div>
                     <div>
-                        <label className='block mb-2'>Price per Hour</label>
+                        <label className='block mb-2'>Price per Person</label>
                         <input
                             type='number'
-                            name='pricePerHour'
-                            value={formData.pricePerHour}
+                            name='pricePerPerson'
+                            value={formData.pricePerPerson}
                             onChange={handleChange}
                             className='w-full p-2 border rounded'
                         />

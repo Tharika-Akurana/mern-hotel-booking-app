@@ -11,7 +11,7 @@ const CreateListing = () => {
         email: '',
         description: '',
         hotelType: '',
-        pricePerHour: '',
+        pricePerPerson: '',
         pricePerNight: '',
         priceDayFunction: '',
         priceNightFunction: '',
@@ -217,22 +217,23 @@ const CreateListing = () => {
                 </div>
 
                 {/* Pricing */}
-                {formData.hotelType === "restaurant" || formData.hotelType === "transient" ? (
+                { 
+                 formData.hotelType === "restaurant"? (
                     <div>
-                        <label className='block mb-2 font-sans text-justify'> Price per Hour (LKR) </label>
+                        <label className='block mb-2 font-sans text-justify'> Price per Person (USD) </label>
                         <input
                             type = "number"
-                            name = "pricePerHour"
-                            value = {formData.pricePerHour}
+                            name = "pricePerPerson"
+                            value = {formData.pricePerPerson}
                             onChange = {handleChange}
                             className='w-full p-2 border rounded'
                             placeholder='price'
                             required
                         />
                     </div>
-                ) : formData.hotelType === "business" || formData.hotelType === "budget" || formData.hotelType === "guestHouse" ? (
+                ) : formData.hotelType === "business" || formData.hotelType === "budget" || formData.hotelType === "guestHouse" || formData.hotelType === "transient" ? (
                     <div>
-                        <label className='block mb-2 font-sans text-justify'> Price per Night (LKR) </label>
+                        <label className='block mb-2 font-sans text-justify'> Price per Night (USD) </label>
                         <input
                             type = "number"
                             name = "pricePerNight"
@@ -248,7 +249,7 @@ const CreateListing = () => {
                         <label className='block mb-2 font-sans text-justify'> Pricing Details </label>
                         <div className='grid grid-cols-2 gap-4'>
                             <div>
-                                <label className='block mb-2 font-normal'> Price per Night (LKR) </label>
+                                <label className='block mb-2 font-normal'> Price per Night (USD) </label>
                                 <input
                                     type = "number"
                                     name = "pricePerNight"
@@ -260,7 +261,7 @@ const CreateListing = () => {
                                 />
                             </div>
                             <div>
-                                <label className='block mb-2 font-normal'> Price for Day Function (LKR) </label>
+                                <label className='block mb-2 font-normal'> Price for Day Function (USD) </label>
                                 <input
                                     type = "number"
                                     name = "priceDayFunction"
@@ -271,7 +272,7 @@ const CreateListing = () => {
                                 />
                             </div>
                             <div>
-                                <label className='block mb-2 font-normal'> Price for Night Function (LKR) </label>
+                                <label className='block mb-2 font-normal'> Price for Night Function (USD) </label>
                                 <input
                                     type = "number"
                                     name = "priceNightFunction"

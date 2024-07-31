@@ -49,7 +49,7 @@ const Home = () => {
       name: 'Budget Hotels', 
       link: '/budget-hotels', 
       sliderDescription: 'Affordable stays with essential amenities and comfort', 
-      detailDescription: 'Budget Hotels are ideal for travelers looking for affordable accommodations without compromising on comfort. These hotels offer essential amenities, clean rooms, and convenient locations, making them a great choice for budget-conscious travelers. Specially, budget hotels prioritize affordability and practicality. You can budget hotels to save money while still enjoying a comfortable stay, especially when traveling for work or on a tight budget.', 
+      detailDescription: 'Budget Hotels are ideal for travelers looking for affordable accommodations without compromising on comfort. These  offer essential amenities, clean rooms, and convenient locations, making them a great choice for budget-conscious travelers. Specially, budget hotels prioritize affordability and practicality. You can budget hotels to save money while still enjoying a comfortable stay, especially when traveling for work or on a tight budget.', 
       img: budget 
     },
     {

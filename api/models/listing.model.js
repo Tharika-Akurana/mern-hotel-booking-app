@@ -25,7 +25,7 @@ const listingSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    pricePerHour: {
+    pricePerPerson: {
         type: Number
     },
     pricePerNight: {
