@@ -22,6 +22,7 @@ import LuxuryHotels from "./pages/LuxuryHotels";
 import BusinessHotels from "./pages/BusinessHotels";
 import TransientHotels from "./pages/TransientHotels";
 import Restaurants from "./pages/Restaurants";
+import HotelDetails from "./pages/HotelDetails";
 
 
 export default function App() {
@@ -45,6 +46,7 @@ export default function App() {
           <Route path="/luxury-hotels" element={<LuxuryHotels/>} />
           <Route path="/business-hotels" element={<BusinessHotels/>} />
           <Route path="/transient-hotels" element={<TransientHotels/>} />
+          <Route path="/hotel-details/:id" element={<HotelDetails/>} />
 
           <Route element={<PrivateRoute />}>
             <Route path='/profile' element={<Profile />} />
