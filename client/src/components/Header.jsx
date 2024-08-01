@@ -11,7 +11,8 @@ export default function Header() {
     && location.pathname !== '/listings' && location.pathname !== '/edit-listings' && location.pathname !== '/logout' 
     && location.pathname !== '/boutique-hotels' && location.pathname !== '/budget-hotels' && location.pathname !== '/business-hotels' 
     && location.pathname !== '/guest-houses' && location.pathname !== '/luxury-hotels' && location.pathname !== '/resorts'
-    && location.pathname !== '/restaurants' && location.pathname !== '/transient-hotels' &&  !location.pathname.startsWith('/edit-listing/') ;
+    && location.pathname !== '/restaurants' && location.pathname !== '/transient-hotels' &&  
+    !location.pathname.startsWith('/hotel-details/') && !location.pathname.startsWith('/edit-listing/') ;
     const navigate = useNavigate;
     
   
