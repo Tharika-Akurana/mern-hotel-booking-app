@@ -15,10 +15,10 @@ export default function Welcome() {
     return (
         <div className="relative h-screen w-full flex items-center justify-center">
             <div className="absolute inset-1 bg-fixed bg-cover bg-center bg-no-repeat" 
-            style={{backgroundImage: `url(${backgroundImage})`, filter: "blur(1px)"}}>
+            style={{backgroundImage: `url(${backgroundImage})`, filter: "blur(0.5px)"}}>
             </div>
             <div className="absolute onset-0 bg-white opacity-10"></div>
-            <div className="relative z-10 bg-white bg-opacity-75 max-w-10xl mx-auto p-20 rounded-2xl shadow-lg text-center">
+            <div className="relative z-10 bg-ivory bg-opacity-85 max-w-10xl mx-auto p-20 rounded-2xl shadow-lg text-center">
                 <h1 className="text-4xl font-bold text-center mb-2 font-serif from-neutral-900">
                     Stay&Dine Hub
                 </h1>
