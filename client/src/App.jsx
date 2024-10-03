@@ -23,42 +23,80 @@ import BusinessHotels from "./pages/BusinessHotels";
 import TransientHotels from "./pages/TransientHotels";
 import Restaurants from "./pages/Restaurants";
 import HotelDetails from "./pages/HotelDetails";
-
+import BookingForm from "./pages/BookingForm";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Header/>
+      <Header />
       <div className="flex">
         <Routes>
-
-          <Route path="/" element={<Welcome/>} />
-          <Route path="/admin-sign-in" element={<AdminSignIn/>} />
-          <Route path="/home" element={<Home/>} />
-          <Route path="/sign-in" element={<SignIn/>} />
-          <Route path="/sign-up" element={<SignUp/>} />
-          <Route path="/about" element={<About/>} />
+          <Route path="/" element={<Welcome />} />
+          <Route path="/admin-sign-in" element={<AdminSignIn />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/about" element={<About />} />
           <Route path="/restaurants" element={<Restaurants />} />
-          <Route path="/resorts" element={<Resorts/>} />
-          <Route path="/guest-houses" element={<GuestHouses/>} />
-          <Route path="/budget-hotels" element={<BudgetHotels/>} />
-          <Route path="/boutique-hotels" element={<BoutiqueHotels/>} />
-          <Route path="/luxury-hotels" element={<LuxuryHotels/>} />
-          <Route path="/business-hotels" element={<BusinessHotels/>} />
-          <Route path="/transient-hotels" element={<TransientHotels/>} />
-          <Route path="/hotel-details/:id" element={<HotelDetails/>} />
+          <Route path="/resorts" element={<Resorts />} />
+          <Route path="/guest-houses" element={<GuestHouses />} />
+          <Route path="/budget-hotels" element={<BudgetHotels />} />
+          <Route path="/boutique-hotels" element={<BoutiqueHotels />} />
+          <Route path="/luxury-hotels" element={<LuxuryHotels />} />
+          <Route path="/business-hotels" element={<BusinessHotels />} />
+          <Route path="/transient-hotels" element={<TransientHotels />} />
+          <Route path="/hotel-details/:id" element={<HotelDetails />} />
 
           <Route element={<PrivateRoute />}>
-            <Route path='/profile' element={<Profile />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
 
-          
-          <Route path="/create-listings" element={<> <Sidebar /> <CreateListings/> </>} />
-          <Route path="/edit-listings" element={<> <Sidebar /> <EditListings/> </>} /> 
-          <Route path="/listings" element={<> <Sidebar /> <Listings/> </>} /> 
-          <Route path="/logout" element={<> <Sidebar/> <Logout/> </>} /> 
-          <Route path="/edit-listing/:id" element={<> <Sidebar /> <EditListingDetails /> </>} />
-
+          <Route
+            path="/create-listings"
+            element={
+              <>
+                {" "}
+                <Sidebar /> <CreateListings />{" "}
+              </>
+            }
+          />
+          <Route
+            path="/edit-listings"
+            element={
+              <>
+                {" "}
+                <Sidebar /> <EditListings />{" "}
+              </>
+            }
+          />
+          <Route
+            path="/listings"
+            element={
+              <>
+                {" "}
+                <Sidebar /> <Listings />{" "}
+              </>
+            }
+          />
+          <Route
+            path="/logout"
+            element={
+              <>
+                {" "}
+                <Sidebar /> <Logout />{" "}
+              </>
+            }
+          />
+          <Route
+            path="/edit-listing/:id"
+            element={
+              <>
+                {" "}
+                <Sidebar /> <EditListingDetails />{" "}
+              </>
+            }
+          />
+          <Route path="/booking" element={<BookingForm />} />
         </Routes>
       </div>
     </BrowserRouter>
