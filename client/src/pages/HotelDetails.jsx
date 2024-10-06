@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import googleMap from "../assets/Images/Google_Map.jpg";
+import { useSelector } from "react-redux";
+import { selectIsLoggedIn } from "../redux/user/userSlice";
 
 const HotelDetails = () => {
   const { id } = useParams();
@@ -11,6 +13,7 @@ const HotelDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     const fetchHotelDetails = async () => {
@@ -31,9 +34,12 @@ const HotelDetails = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
-  // Handle booking button click
   const handleBookNow = () => {
-    navigate(`/booking`);
+    if (isLoggedIn != null) {
+      navigate(`/booking`);
+    } else {
+      navigate(`/sign-in`);
+    }
   };
 
   return (
