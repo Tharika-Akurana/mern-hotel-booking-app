@@ -103,45 +103,45 @@ const HotelDetails = () => {
           {/* Pricing Information */}
           <div className="py-4 text-center font-serif text-red-700 px-24 text-xl">
             {hotel.hotelType === "restaurant" && (
-              <p className="py-2">
+              <div className="py-2">
                 Price per Person:{" "}
                 <div className="text-3xl">${hotel.pricePerPerson}</div>
-              </p>
+              </div>
             )}
             {(hotel.hotelType === "business" ||
               hotel.hotelType === "guestHouse" ||
               hotel.hotelType === "budget" ||
               hotel.hotelType === "transient") && (
-              <p className="py-2">
+              <div className="py-2">
                 {" "}
                 Price per Night:{" "}
                 <div className="text-3xl">${hotel.pricePerNight}</div>
-              </p>
+              </div>
             )}
             {(hotel.hotelType === "resort" ||
               hotel.hotelType === "boutique" ||
               hotel.hotelType === "luxury") && (
               <div>
-                <p className="py-2">
+                <div className="py-2">
                   Price per Night:{" "}
                   <div className="text-3xl">${hotel.pricePerNight}</div>
-                </p>
+                </div>
                 {hotel.priceDayFunction && (
-                  <p className="py-2">
+                  <div className="py-2">
                     Price for Day Function:
                     <div className="text-3xl"> ${hotel.priceDayFunction}</div>
-                  </p>
+                  </div>
                 )}
                 {hotel.priceNightFunction && (
-                  <p className="py-2">
+                  <div className="py-2">
                     Price for Night Function:
                     <div className="text-3xl"> ${hotel.priceNightFunction}</div>
-                  </p>
+                  </div>
                 )}
               </div>
             )}
           </div>
-          <p className="font-semibold  lg:px-20 py-4 text-center">
+          <div className="font-semibold  lg:px-20 py-4 text-center">
             <div className=" font-bold text-center py-3">
               Address: <br />
             </div>
@@ -150,7 +150,7 @@ const HotelDetails = () => {
                 {line} <br />
               </span>
             ))}
-          </p>
+          </div>
           <div className="flex justify-center">
             <img
               src={googleMap}
