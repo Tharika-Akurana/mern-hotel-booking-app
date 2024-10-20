@@ -158,6 +158,16 @@ const BookingForm = () => {
         ) : hotelType == "restaurant" ? (
           <>
             <div className="flex">
+              <label className="block font-serif w-1/3 mb-3">Date:</label>
+              <input
+                type="date"
+                id="date"
+                name="date"
+                className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
+                required
+              />
+            </div>
+            <div className="flex">
               <label className="block font-serif w-1/3 mb-3">
                 Check-In Time:
               </label>

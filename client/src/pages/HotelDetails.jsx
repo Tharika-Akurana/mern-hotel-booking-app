@@ -104,7 +104,7 @@ const HotelDetails = () => {
           <div className="py-4 text-center font-serif text-red-700 px-24 text-xl">
             {hotel.hotelType === "restaurant" && (
               <div className="py-2">
-                Price per Person:{" "}
+                Price per Person for an Hour:{" "}
                 <div className="text-3xl">${hotel.pricePerPerson}</div>
               </div>
             )}
@@ -141,6 +141,9 @@ const HotelDetails = () => {
               </div>
             )}
           </div>
+          <p className="text-center font-serif text-red-500 px-24 text-sm">
+            **Additional charges will be added acording to the choice
+          </p>
           <div className="font-semibold  lg:px-20 py-4 text-center">
             <div className=" font-bold text-center py-3">
               Address: <br />
