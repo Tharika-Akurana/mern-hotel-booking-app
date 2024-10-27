@@ -31,12 +31,16 @@ const HotelDetails = () => {
     fetchHotelDetails();
   }, [id]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   const handleBookNow = () => {
     if (isLoggedIn != null) {
-      navigate(`/booking`);
+      navigate(`/booking`, { state: { hotel } });
     } else {
       navigate(`/sign-in`);
     }

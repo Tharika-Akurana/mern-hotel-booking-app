@@ -7,6 +7,7 @@ import {
 } from "firebase/storage";
 import { app } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import AlertMessage from "../components/Notifications";
 
 const CreateListing = () => {
   const [formData, setFormData] = useState({
@@ -32,7 +33,7 @@ const CreateListing = () => {
       [name]: value,
     });
   };
-
+  const [showNotification, setShowNotification] = useState(false);
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [imageUploadError, setImageUploadError] = useState(false);
@@ -103,6 +104,7 @@ const CreateListing = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       if (formData.imageUrls.length < 1)
         return setError("You must upload at least one image");
@@ -120,9 +122,10 @@ const CreateListing = () => {
       if (data.success === false) {
         setError(data.message);
       } else {
+        setShowNotification(true);
         setTimeout(() => {
           navigate("/edit-listings");
-        }, 1000);
+        }, 2000);
       }
     } catch (error) {
       setError(error.message);
@@ -436,10 +439,17 @@ const CreateListing = () => {
           disabled={loading || uploading}
           className="px-4 py-2 bg-darkGold text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
         >
-          {loading ? "Adding..." : "Adding Hotel"}
+          {loading ? "Adding..." : "Add Hotel"}
         </button>
         {error && <p className="text-red-700 text-sm">{error}</p>}
       </form>
+
+      {showNotification && (
+        <AlertMessage
+          message="Hotel created successfully"
+          onClose={() => setShowNotification(false)}
+        />
+      )}
     </div>
   );
 };

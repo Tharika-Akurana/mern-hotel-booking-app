@@ -1,19 +1,127 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import PaymentMethod from "../components/booking/PaymentMethod";
+import ResortLuxuryBoutiqueBooking from "../components/booking/ResortLuxuryBoutiqueBooking";
+import RestaurantBooking from "../components/booking/RestaurantBooking";
+import GeneratePdf from "../components/booking/GeneratePDF";
+import AlertMessage from "../components/Notifications";
 
 const BookingForm = () => {
-  const [hotelType, setHotelType] = useState("");
-  const [roomTypeVisible, setRoomTypeVisible] = useState(true);
-  const [stayOrFunction, setStayOrFunction] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { hotel = {} } = location.state || {};
+  const {
+    hotelType,
+    name,
+    pricePerNight,
+    priceDayFunction,
+    priceNightFunction,
+  } = hotel;
 
-  const handleHotelTypeChange = (e) => {
-    const selectedHotelType = e.target.value;
-    setHotelType(selectedHotelType);
-    setRoomTypeVisible(selectedHotelType !== "restaurant");
+  const [showNotification, setShowNotification] = useState(false);
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const [stayOrFunction, setStayOrFunction] = useState("");
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [checkInDate, setCheckInDate] = useState("");
+  const [checkOutDate, setCheckOutDate] = useState("");
+  const [numberOfGuests, setNumberOfGuests] = useState(1);
+  const [functionType, setFunctionType] = useState("");
+  const [checkInTimeForRestaurant, setCheckInTimeForRestaurant] = useState("");
+  const [checkOutTimeForRestaurant, setCheckOutTimeForRestaurant] =
+    useState("");
+
+  useEffect(() => {
+    const checkIn = new Date(checkInDate);
+    const checkOut = new Date(checkOutDate);
+    const days = (checkOut - checkIn) / (1000 * 3600 * 24);
+
+    // Calculate total price logic based on stay or function selection
+    if (
+      hotelType === "resort" ||
+      hotelType === "boutique" ||
+      hotelType === "luxury"
+    ) {
+      if (stayOrFunction === "stay" && checkInDate && checkOutDate) {
+        // Calculate number of days
+        setTotalPrice(days * pricePerNight * numberOfGuests);
+      } else if (stayOrFunction === "function") {
+        if (functionType === "day") {
+          setTotalPrice(priceDayFunction * numberOfGuests);
+        } else if (functionType === "night") {
+          setTotalPrice(priceNightFunction * numberOfGuests);
+        }
+      }
+    }
+
+    if (
+      (hotel.hotelType === "guestHouse" ||
+        hotel.hotelType === "business" ||
+        hotel.hotelType === "transient" ||
+        hotel.hotelType === "budget") &&
+      days > 0
+    ) {
+      // Calculate the total price
+      const total = days * hotel.pricePerNight * numberOfGuests;
+      setTotalPrice(total);
+    }
+
+    if (hotelType === "restaurant") {
+      let durationInHours = 0;
+      // Parse the time to hours
+      const checkIn = new Date(`1970-01-01T${checkInTimeForRestaurant}:00`);
+      const checkOut = new Date(`1970-01-01T${checkOutTimeForRestaurant}:00`);
+
+      // Calculate time difference in hours
+      durationInHours = (checkOut - checkIn) / (1000 * 60 * 60);
+
+      if (durationInHours <= 0) {
+        alert("Check-out time must be after check-in time");
+        return;
+      }
+      // Calculate total price
+      const totalPrice =
+        durationInHours * numberOfGuests * hotel.pricePerPerson;
+      setTotalPrice(totalPrice);
+    }
+  }, [
+    checkInDate,
+    checkOutDate,
+    numberOfGuests,
+    stayOrFunction,
+    pricePerNight,
+    priceDayFunction,
+    priceNightFunction,
+    checkInTimeForRestaurant,
+    checkOutTimeForRestaurant,
+    functionType,
+  ]);
+
+  const bookingDetails = {
+    fullName,
+    email,
+    phone,
+    name,
+    hotelType,
+    numberOfGuests,
+    totalPrice,
+    checkInTimeForRestaurant,
+    checkOutTimeForRestaurant,
+    stayOrFunction,
+    functionType,
+    checkInDate,
+    checkOutDate,
   };
 
-  const handlePaymentMethodChange = (e) => {
-    setPaymentMethod(e.target.value);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setShowNotification(true);
+    setTimeout(() => {
+      GeneratePdf(bookingDetails);
+      navigate("/");
+    }, 2000);
   };
 
   return (
@@ -22,10 +130,37 @@ const BookingForm = () => {
         Hotel Reservation Form
       </h2>
       <p className="text-sm text-center mb-8">
-        Tell us your preferences for a tailored booking experience that
-        guarantees a memorable stay for dining, business, or special events.
+        Tell us your preferences for a tailored booking experience!!!
       </p>
-      <form>
+
+      <div className="flex">
+        <label className="block font-serif w-1/3 mb-4">Hotel Name:</label>
+        <span>{name}</span>
+      </div>
+      <div className="flex">
+        <label className="block font-serif w-1/3 mb-4">Hotel Type:</label>
+        <span>
+          {hotelType === "restaurant"
+            ? "Restaurant"
+            : hotelType === "guestHouse"
+            ? "Guest-House"
+            : hotelType === "resort"
+            ? "Resort"
+            : hotelType === "budget"
+            ? "Budget Hotel"
+            : hotelType === "boutique"
+            ? "Boutique Hotel"
+            : hotelType === "luxury"
+            ? "Luxury Hotel"
+            : hotelType === "business"
+            ? "Business Hotel"
+            : hotelType === "transient"
+            ? "Transient Hotel"
+            : hotelType}
+        </span>
+      </div>
+
+      <form onSubmit={handleSubmit}>
         {/* Guest Details */}
         <div className="flex">
           <label className="block font-serif w-1/3 mb-3">Full Name:</label>
@@ -34,6 +169,8 @@ const BookingForm = () => {
             id="guestName"
             name="guestName"
             className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
             required
           />
         </div>
@@ -44,6 +181,8 @@ const BookingForm = () => {
             id="email"
             name="email"
             className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -54,54 +193,57 @@ const BookingForm = () => {
             id="phone"
             name="phone"
             className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
             required
           />
         </div>
-        {/* Hotel Type Selection */}
+
+        {/* Number of Guests */}
         <div className="flex">
-          <label className="block font-serif w-1/3 mb-3">Hotel Type:</label>
-          <select
-            id="hotelType"
-            name="hotelType"
+          <label className="block font-serif w-1/3 mb-3">
+            Number of Guests:
+          </label>
+          <input
+            type="number"
+            id="numberOfGuests"
+            name="numberOfGuests"
             className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
-            value={hotelType}
-            onChange={handleHotelTypeChange}
+            min="1"
+            defaultValue="1"
+            onChange={(e) => setNumberOfGuests(e.target.value)}
             required
-          >
-            <option value="">Select Hotel Type</option>
-            <option value="restaurant">Restaurant</option>
-            <option value="resort">Resort</option>
-            <option value="budget">Budget Hotel</option>
-            <option value="boutique">Boutique Hotel</option>
-            <option value="luxury">Luxury Hotel</option>
-            <option value="guestHouse">Guest House</option>
-            <option value="business">Business Hotel</option>
-            <option value="transient">Transient Hotel</option>
-          </select>
+          />
         </div>
 
-        {/* Stay or Function Option for Resort, Boutique and Luxury Hotels*/}
-        {["resort", "boutique", "luxury"].includes(hotelType) && (
-          <div className="flex">
-            <label className="block font-serif w-1/3 mb-3">
-              Stay or Function:
-            </label>
-            <select
-              value={stayOrFunction}
-              onChange={(e) => setStayOrFunction(e.target.value)}
-              className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
-              required
-            >
-              <option value="">Select Option</option>
-              <option value="stay">Stay</option>
-              <option value="function">Function</option>
-            </select>
-          </div>
+        {hotelType === "restaurant" && (
+          <RestaurantBooking
+            setCheckInDate={setCheckInDate}
+            setCheckInTimeForRestaurant={setCheckInTimeForRestaurant}
+            setCheckOutTimeForRestaurant={setCheckOutTimeForRestaurant}
+          />
         )}
 
-        {/* Conditional Check-in and Check-out Dates or Function Selection */}
-        {stayOrFunction === "stay" ? (
+        {/* Resort, Luxury, and Boutique Hotel Booking */}
+        {(hotelType === "resort" ||
+          hotelType === "boutique" ||
+          hotelType === "luxury") && (
+          <ResortLuxuryBoutiqueBooking
+            hotel={hotel}
+            setCheckInDate={setCheckInDate}
+            setCheckOutDate={setCheckOutDate}
+            setStayOrFunction={setStayOrFunction}
+            setFunctionType={setFunctionType}
+          />
+        )}
+
+        {/*To handle guest and other checkin and checkout dates */}
+        {hotel.hotelType === "guestHouse" ||
+        hotel.hotelType === "business" ||
+        hotel.hotelType === "transient" ||
+        hotel.hotelType === "budget" ? (
           <>
+            {/* Check-In Date */}
             <div className="flex">
               <label className="block font-serif w-1/3 mb-3">
                 Check-In Date:
@@ -112,8 +254,11 @@ const BookingForm = () => {
                 name="checkIn"
                 className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
                 required
+                onChange={(e) => setCheckInDate(e.target.value)}
               />
             </div>
+
+            {/* Check-Out Date */}
             <div className="flex">
               <label className="block font-serif w-1/3 mb-3">
                 Check-Out Date:
@@ -124,107 +269,20 @@ const BookingForm = () => {
                 name="checkOut"
                 className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
                 required
+                onChange={(e) => setCheckOutDate(e.target.value)}
               />
             </div>
           </>
-        ) : stayOrFunction === "function" ? (
-          <>
-            <div className="flex">
-              <label className="block font-serif w-1/3 mb-3">
-                Function Type:
-              </label>
-              <select
-                id="functionType"
-                name="functionType"
-                className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
-                required
-              >
-                <option value="">Select Function Type</option>
-                <option value="day">Day Function</option>
-                <option value="night">Night Function</option>
-              </select>
-            </div>
-            <div className="flex">
-              <label className="block font-serif w-1/3 mb-3">Date:</label>
-              <input
-                type="date"
-                id="functionDate"
-                name="functionDate"
-                className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
-                required
-              />
-            </div>
-          </>
-        ) : hotelType == "restaurant" ? (
-          <>
-            <div className="flex">
-              <label className="block font-serif w-1/3 mb-3">Date:</label>
-              <input
-                type="date"
-                id="date"
-                name="date"
-                className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
-                required
-              />
-            </div>
-            <div className="flex">
-              <label className="block font-serif w-1/3 mb-3">
-                Check-In Time:
-              </label>
-              <input
-                type="time"
-                id="checkIn"
-                name="checkIn"
-                className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
-                required
-              />
-            </div>
-            <div className="flex">
-              <label className="block font-serif w-1/3 mb-3">
-                Check-Out Time:
-              </label>
-              <input
-                type="time"
-                id="checkOut"
-                name="checkOut"
-                className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
-                required
-              />
-            </div>
-          </>
-        ) : (
-          hotelType !== "restaurant" && (
-            <>
-              <div className="flex">
-                <label className="block font-serif w-1/3 mb-3">
-                  Check-In Date:
-                </label>
-                <input
-                  type="date"
-                  id="checkIn"
-                  name="checkIn"
-                  className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
-                  required
-                />
-              </div>
-              <div className="flex">
-                <label className="block font-serif w-1/3 mb-3">
-                  Check-Out Date:
-                </label>
-                <input
-                  type="date"
-                  id="checkOut"
-                  name="checkOut"
-                  className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
-                  required
-                />
-              </div>
-            </>
-          )
-        )}
+        ) : null}
 
-        {/* Room Type (Hidden for Restaurants) */}
-        {roomTypeVisible && (
+        {/* Total Price */}
+        <div className="flex">
+          <label className="block font-serif w-1/3 mb-3">Total Price:</label>
+          <span>{totalPrice > 0 ? `$${totalPrice.toFixed(2)}` : "N/A"}</span>
+        </div>
+
+        {/* Room Type (Hidden for Restaurants and for functions) */}
+        {hotelType !== "restaurant" && stayOrFunction !== "function" && (
           <div className="flex">
             <label className="block font-serif w-1/3 mb-3">Room Type:</label>
             <select
@@ -241,112 +299,28 @@ const BookingForm = () => {
           </div>
         )}
 
-        {/* Number of Guests */}
-        <div className="flex">
-          <label className="block font-serif w-1/3 mb-3">
-            Number of Guests:
-          </label>
-          <input
-            type="number"
-            id="guests"
-            name="guests"
-            className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
-            min="1"
-            required
-          />
-        </div>
-
         {/* Payment Details */}
-        <div className="flex">
-          <label className="block font-serif w-1/3 mb-3">Payment Method:</label>
-          <select
-            id="payment"
-            name="payment"
-            className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
-            value={paymentMethod}
-            onChange={handlePaymentMethodChange}
-            required
-          >
-            <option value="">Select Payment Method</option>
-            <option value="creditCard">Credit Card</option>
-            <option value="paypal">PayPal</option>
-            <option value="bankTransfer">Online Transfer</option>
-          </select>
-        </div>
+        <PaymentMethod />
 
-        {/* Conditionally render fields based on the selected payment method */}
-        {paymentMethod === "creditCard" && (
-          <>
-            <div className="flex">
-              <label className="block font-serif w-1/3 mb-3">
-                Card Number:
-              </label>
-              <input
-                type="text"
-                id="cardNumber"
-                name="cardNumber"
-                className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
-                required
-              />
-            </div>
-            <div className="flex gap-4">
-              <div className="w-1/2">
-                <label className="block font-serif mb-3 text-center">
-                  Expiry Date:{" "}
-                </label>
-                <input
-                  type="text"
-                  id="expiry"
-                  name="expiry"
-                  placeholder="MM/YY"
-                  className="w-full mt-1 mb-3 p-2 border border-gray-300 rounded-md text-center"
-                  required
-                />
-              </div>
-              <div className="w-1/2">
-                <label className="block font-serif mb-3 text-center">
-                  CVV:
-                </label>
-                <input
-                  type="text"
-                  id="cvv"
-                  name="cvv"
-                  placeholder="3 digits"
-                  className="w-full mt-1 mb-3 p-2 border border-gray-300 rounded-md text-center"
-                  required
-                />
-              </div>
-            </div>
-          </>
-        )}
-
-        {paymentMethod === "paypal" && (
-          <div className="flex">
-            <label className="block font-serif w-1/3 mb-3">PayPal Email:</label>
-            <input
-              type="email"
-              id="paypalEmail"
-              name="paypalEmail"
-              className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
-              required
-            />
-          </div>
-        )}
-
-        {paymentMethod === "bankTransfer" && (
-          <div className="flex">
-            <label className="block font-serif w-1/3 mb-3">
-              Bank Account Number:
-            </label>
-            <input
-              type="text"
-              id="bankAccount"
-              name="bankAccount"
-              className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
-              required
-            />
-          </div>
-        )}
+        {/* Generate PDF*/}
+        {/* <GeneratePdf
+          fullName={fullName}
+          phone={phone}
+          email={email}
+          totalPrice={totalPrice}
+          checkInDate={checkInDate}
+          checkOutDate={checkInDate}
+          numberOfGuests={numberOfGuests}
+          stayOrFunction={stayOrFunction}
+          pricePerNight={pricePerNight}
+          priceDayFunction={priceDayFunction}
+          priceNightFunction={priceNightFunction}
+          checkInTimeForRestaurant={checkInTimeForRestaurant}
+          checkOutTimeForRestaurant={checkOutTimeForRestaurant}
+          functionType={functionType}
+          hotelType={hotelType}
+          name={name}
+        /> */}
         {/* Submit Button */}
         <div className="flex justify-center mt-5">
           <button
@@ -357,6 +331,13 @@ const BookingForm = () => {
           </button>
         </div>
       </form>
+
+      {showNotification && (
+        <AlertMessage
+          message="Booking created successfully"
+          onClose={() => setShowNotification(false)}
+        />
+      )}
     </div>
   );
 };
