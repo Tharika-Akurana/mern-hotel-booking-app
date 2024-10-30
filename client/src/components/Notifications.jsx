@@ -6,7 +6,7 @@ const AlertMessage = ({ message, onClose }) => {
     return () => clearTimeout(timer);
   }, [onClose]);
   return (
-    <div className="fixed top-4 left-1/2 transform -translate-x-1/2 h-20 w-72 bg-saffron text-white p-4 rounded-sm shadow-lg flex items-center">
+    <div className="fixed top-4 right-4 h-20 w-72 bg-darkGold text-white p-4 rounded-sm shadow-lg flex items-center">
       <span>{message}</span>
       <button
         onClick={onClose}

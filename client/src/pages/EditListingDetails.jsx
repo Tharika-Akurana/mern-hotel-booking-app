@@ -172,7 +172,7 @@ const EditListingDetails = () => {
       {error && <p className="text-red-700">{error}</p>}
       {showNotification && (
         <AlertMessage
-          message="Changes were saved successfully"
+          message="Changes saved successfully"
           onClose={() => setShowNotification(false)}
         />
       )}
