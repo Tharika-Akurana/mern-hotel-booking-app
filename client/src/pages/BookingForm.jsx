@@ -302,7 +302,7 @@ const BookingForm = () => {
         )}
 
         {/* Payment Details */}
-        <PaymentMethod />
+        {/* <PaymentMethod /> */}
 
         {/* Generate PDF*/}
         {/* <GeneratePdf

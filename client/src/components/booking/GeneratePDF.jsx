@@ -103,6 +103,7 @@ const GeneratePdf = ({
     body: tableData.map(({ item, value }) => [item, value]),
     theme: "grid",
     styles: { halign: "left" },
+    headStyles: { fillColor: [44, 62, 80] },
   });
 
   // Footer with Thank You message
