@@ -32,6 +32,7 @@ const BookingForm = () => {
   const [checkInTimeForRestaurant, setCheckInTimeForRestaurant] = useState("");
   const [checkOutTimeForRestaurant, setCheckOutTimeForRestaurant] =
     useState("");
+  const [roomType, setRoomType] = useState("");
 
   useEffect(() => {
     const checkIn = new Date(checkInDate);
@@ -113,6 +114,7 @@ const BookingForm = () => {
     functionType,
     checkInDate,
     checkOutDate,
+    roomType,
   };
 
   const handleSubmit = (e) => {
@@ -286,8 +288,8 @@ const BookingForm = () => {
           <div className="flex">
             <label className="block font-serif w-1/3 mb-3">Room Type:</label>
             <select
-              id="roomType"
-              name="roomType"
+              value={roomType}
+              onChange={(e) => setRoomType(e.target.value)}
               className="w-2/3 mt-1 mb-3 ml-1 p-2 border border-gray-300 rounded-md"
               required
             >

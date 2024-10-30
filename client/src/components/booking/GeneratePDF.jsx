@@ -19,6 +19,7 @@ const GeneratePdf = ({
   functionType,
   checkInDate,
   checkOutDate,
+  roomType,
 }) => {
   const doc = new jsPDF();
 
@@ -77,6 +78,7 @@ const GeneratePdf = ({
       ...(stayOrFunction === "function"
         ? [{ item: "Function Type", value: functionType }]
         : [
+            { item: "Room Type", value: roomType },
             { item: "Check-In Date", value: checkInDate },
             { item: "Check-Out Date", value: checkOutDate },
           ])
@@ -88,6 +90,7 @@ const GeneratePdf = ({
     hotel.hotelType === "budget"
   ) {
     tableData.push(
+      { item: "Room Type", value: roomType },
       { item: "Check-In Date", value: checkInDate },
       { item: "Check-Out Date", value: checkOutDate }
     );
