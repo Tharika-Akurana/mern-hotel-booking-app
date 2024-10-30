@@ -14,6 +14,8 @@ export default function Header() {
     location.pathname !== "/create-listings" &&
     location.pathname !== "/listings" &&
     location.pathname !== "/edit-listings" &&
+    location.pathname !== "/bookings" &&
+    location.pathname !== "/booking-details" &&
     location.pathname !== "/logout" &&
     !location.pathname.startsWith("/edit-listing/");
   const navigate = useNavigate;

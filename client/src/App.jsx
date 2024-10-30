@@ -24,8 +24,12 @@ import TransientHotels from "./pages/TransientHotels";
 import Restaurants from "./pages/Restaurants";
 import HotelDetails from "./pages/HotelDetails";
 import BookingForm from "./pages/BookingForm";
+import AdminBookingList from "./pages/AdminBookingList";
+import BookingDetails from "./pages/AdminBookingDetails";
+import { useSelector } from "react-redux";
 
 export default function App() {
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <BrowserRouter>
       <Header />
@@ -51,51 +55,74 @@ export default function App() {
             <Route path="/profile" element={<Profile />} />
           </Route>
 
-          <Route
-            path="/create-listings"
-            element={
-              <>
-                {" "}
-                <Sidebar /> <CreateListings />{" "}
-              </>
-            }
-          />
-          <Route
-            path="/edit-listings"
-            element={
-              <>
-                {" "}
-                <Sidebar /> <EditListings />{" "}
-              </>
-            }
-          />
-          <Route
-            path="/listings"
-            element={
-              <>
-                {" "}
-                <Sidebar /> <Listings />{" "}
-              </>
-            }
-          />
-          <Route
-            path="/logout"
-            element={
-              <>
-                {" "}
-                <Sidebar /> <Logout />{" "}
-              </>
-            }
-          />
-          <Route
-            path="/edit-listing/:id"
-            element={
-              <>
-                {" "}
-                <Sidebar /> <EditListingDetails />{" "}
-              </>
-            }
-          />
+          {currentUser.isAdmin === true && (
+            <>
+              <Route
+                path="/create-listings"
+                element={
+                  <>
+                    {" "}
+                    <Sidebar /> <CreateListings />{" "}
+                  </>
+                }
+              />
+
+              <Route
+                path="/edit-listings"
+                element={
+                  <>
+                    {" "}
+                    <Sidebar /> <EditListings />{" "}
+                  </>
+                }
+              />
+              <Route
+                path="/bookings"
+                element={
+                  <>
+                    {" "}
+                    <Sidebar /> <AdminBookingList />{" "}
+                  </>
+                }
+              />
+              <Route
+                path="/booking-details"
+                element={
+                  <>
+                    {" "}
+                    <Sidebar /> <BookingDetails />{" "}
+                  </>
+                }
+              />
+              <Route
+                path="/listings"
+                element={
+                  <>
+                    {" "}
+                    <Sidebar /> <Listings />{" "}
+                  </>
+                }
+              />
+              <Route
+                path="/logout"
+                element={
+                  <>
+                    {" "}
+                    <Sidebar /> <Logout />{" "}
+                  </>
+                }
+              />
+              <Route
+                path="/edit-listing/:id"
+                element={
+                  <>
+                    {" "}
+                    <Sidebar /> <EditListingDetails />{" "}
+                  </>
+                }
+              />
+            </>
+          )}
           <Route path="/booking" element={<BookingForm />} />
         </Routes>
       </div>

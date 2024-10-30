@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { signInSuccess } from "../redux/user/userSlice";
+import { useDispatch } from "react-redux";
 
 export default function AdminSignIn() {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({
@@ -31,6 +34,7 @@ export default function AdminSignIn() {
         setError(data.message);
         return;
       }
+      dispatch(signInSuccess(data));
       setLoading(false);
       setError(null);
       navigate("/create-listings");
