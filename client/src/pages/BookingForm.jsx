@@ -304,25 +304,6 @@ const BookingForm = () => {
         {/* Payment Details */}
         {/* <PaymentMethod /> */}
 
-        {/* Generate PDF*/}
-        {/* <GeneratePdf
-          fullName={fullName}
-          phone={phone}
-          email={email}
-          totalPrice={totalPrice}
-          checkInDate={checkInDate}
-          checkOutDate={checkInDate}
-          numberOfGuests={numberOfGuests}
-          stayOrFunction={stayOrFunction}
-          pricePerNight={pricePerNight}
-          priceDayFunction={priceDayFunction}
-          priceNightFunction={priceNightFunction}
-          checkInTimeForRestaurant={checkInTimeForRestaurant}
-          checkOutTimeForRestaurant={checkOutTimeForRestaurant}
-          functionType={functionType}
-          hotelType={hotelType}
-          name={name}
-        /> */}
         {/* Submit Button */}
         <div className="flex justify-center mt-5">
           <button
