@@ -7,6 +7,7 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import { app } from "../firebase";
+import AlertMessage from "../components/Notifications";
 
 const EditListingDetails = () => {
   const { id } = useParams();
@@ -30,6 +31,7 @@ const EditListingDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [files, setFiles] = useState([]);
+  const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -123,6 +125,11 @@ const EditListingDetails = () => {
       });
       const data = await res.json();
       if (data.success) {
+        setShowNotification(true);
+        setTimeout(() => {
+          setShowNotification(false);
+          navigate("/edit-listings");
+        }, 2000);
         navigate("/edit-listings");
       } else {
         setError(data.message);
@@ -143,7 +150,11 @@ const EditListingDetails = () => {
       });
       const data = await res.json();
       if (res.ok) {
-        navigate("/edit-listings");
+        setShowNotification(true);
+        setTimeout(() => {
+          setShowNotification(false);
+          navigate("/edit-listings");
+        }, 2000);
       } else {
         setError(data.message);
       }
@@ -159,6 +170,12 @@ const EditListingDetails = () => {
       </h1>
       {loading && <p>Loading...</p>}
       {error && <p className="text-red-700">{error}</p>}
+      {showNotification && (
+        <AlertMessage
+          message="Changes were saved successfully"
+          onClose={() => setShowNotification(false)}
+        />
+      )}
       {listing && (
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
