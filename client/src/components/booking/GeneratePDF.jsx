@@ -84,10 +84,10 @@ const GeneratePdf = ({
           ])
     );
   } else if (
-    hotel.hotelType === "guestHouse" ||
-    hotel.hotelType === "business" ||
-    hotel.hotelType === "transient" ||
-    hotel.hotelType === "budget"
+    hotelType === "guestHouse" ||
+    hotelType === "business" ||
+    hotelType === "transient" ||
+    hotelType === "budget"
   ) {
     tableData.push(
       { item: "Room Type", value: roomType },

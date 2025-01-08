@@ -55,7 +55,7 @@ export default function App() {
             <Route path="/profile" element={<Profile />} />
           </Route>
 
-          {currentUser.isAdmin === true && (
+          {currentUser?.isAdmin === true && (
             <>
               <Route
                 path="/create-listings"

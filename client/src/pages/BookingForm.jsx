@@ -117,13 +117,38 @@ const BookingForm = () => {
     roomType,
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setShowNotification(true);
-    setTimeout(() => {
-      GeneratePdf(bookingDetails);
-      navigate("/");
-    }, 2000);
+    try {
+      const booking = await fetch("/api/booking/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName,
+          email,
+          phone,
+          totalPrice,
+          checkInDate,
+          checkOutDate,
+          numberOfGuests,
+          stayOrFunction,
+          functionType,
+          checkInTimeForRestaurant,
+          checkOutTimeForRestaurant,
+          hotel,
+        }),
+      });
+      setShowNotification(true);
+      setTimeout(() => {
+        GeneratePdf(bookingDetails);
+        navigate("/home");
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
   };
 
   return (
@@ -240,10 +265,10 @@ const BookingForm = () => {
         )}
 
         {/*To handle guest and other checkin and checkout dates */}
-        {hotel.hotelType === "guestHouse" ||
-        hotel.hotelType === "business" ||
-        hotel.hotelType === "transient" ||
-        hotel.hotelType === "budget" ? (
+        {hotelType === "guestHouse" ||
+        hotelType === "business" ||
+        hotelType === "transient" ||
+        hotelType === "budget" ? (
           <>
             {/* Check-In Date */}
             <div className="flex">
